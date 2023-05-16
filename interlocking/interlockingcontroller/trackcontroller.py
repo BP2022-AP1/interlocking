@@ -71,8 +71,8 @@ class TrackController(object):
             pos_of_segment = track.get_position_of_segment(segment_id)
             if pos_of_segment > 0:
                 previous_signal = track.signals[pos_of_segment - 1]
-                if previous_signal.yaramo_signal.direction == SignalDirection.IN:
-                    self.signal_controller.set_signal_halt(previous_signal)
+                #if previous_signal.yaramo_signal.direction == SignalDirection.IN:
+                #    self.signal_controller.set_signal_halt(previous_signal)
             if pos_of_segment < len(track.signals):
                 next_signal = track.signals[pos_of_segment]
                 #if next_signal.yaramo_signal.direction == SignalDirection.GEGEN:
