@@ -18,7 +18,7 @@ class Point(object):
             self.is_point = False
             return
 
-        connection_directions = self.yaramo_node.get_anschluss_for_track(track)
+        connection_directions = self.yaramo_node.get_anschluss_for_edge(track)
 
         for connection_direction in connection_directions:
             if connection_direction == NodeConnectionDirection.Spitze:
