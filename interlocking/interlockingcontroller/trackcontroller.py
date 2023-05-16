@@ -75,8 +75,8 @@ class TrackController(object):
                     self.signal_controller.set_signal_halt(previous_signal)
             if pos_of_segment < len(track.signals):
                 next_signal = track.signals[pos_of_segment]
-                if next_signal.yaramo_signal.direction == SignalDirection.GEGEN:
-                    self.signal_controller.set_signal_halt(next_signal)
+                #if next_signal.yaramo_signal.direction == SignalDirection.GEGEN:
+                #    self.signal_controller.set_signal_halt(next_signal)
 
     def free_segment_of_track(self, track, segment_id):
         if track.state[segment_id] != "free":
