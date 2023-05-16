@@ -18,15 +18,14 @@ class Point(object):
             self.is_point = False
             return
 
-        connection_directions = self.yaramo_node.get_anschluss_for_edge(track)
+        connection_direction = self.yaramo_node.get_anschluss_for_edge(track.yaramo_edge)
 
-        for connection_direction in connection_directions:
-            if connection_direction == NodeConnectionDirection.Spitze:
-                self.head = track
-            elif connection_direction == NodeConnectionDirection.Links:
-                self.left = track
-            elif connection_direction == NodeConnectionDirection.Rechts:
-                self.right = track
+        if connection_direction == NodeConnectionDirection.Spitze:
+            self.head = track
+        elif connection_direction == NodeConnectionDirection.Links:
+            self.left = track
+        elif connection_direction == NodeConnectionDirection.Rechts:
+            self.right = track
 
     def is_track_connected(self, track):
         return track.base_track_id in {self.head.base_track_id, self.left.base_track_id, self.right.base_track_id}
