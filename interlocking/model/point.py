@@ -18,11 +18,7 @@ class Point(object):
             self.is_point = False
             return
 
-        other_node = track.right_point.yaramo_node
-        if other_node.uuid == self.yaramo_node.uuid:
-            other_node = track.left_point.yaramo_node
-
-        connection_directions = self.yaramo_node.get_anschluss_of_other(other_node)
+        connection_directions = self.yaramo_node.get_anschluss_for_track(track)
 
         for connection_direction in connection_directions:
             if connection_direction == NodeConnectionDirection.Spitze:
