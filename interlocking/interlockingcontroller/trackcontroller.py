@@ -20,15 +20,12 @@ class TrackController(object):
         self.reserve_route(route)
 
     def can_route_be_set(self, route):
-        print("Checking if all tracks are free.")
         segments = route.get_segments_of_route()
         for track_base_id in segments:
             track = self.tracks[track_base_id]
             for segment_id in segments[track_base_id]:
-                print(f"Track/Segment {track_base_id} is {track.state[segment_id]}.")
                 if track.state[segment_id] != "free" and track.state[segment_id] != "reserved-overlap":
                     # THIS IS FOR THE MVP! reserved-overlap should not be allowed here!
-                    print('__________This one is not "free"!__________')
                     return False
         return self.overlap_controller.can_any_overlap_be_reserved(route)
 
