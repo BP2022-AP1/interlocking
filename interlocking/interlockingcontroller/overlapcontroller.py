@@ -21,12 +21,17 @@ class OverlapController(object):
         return None
 
     def can_overlap_be_reserved(self, overlap):
+        print("Checking if overlap can be reserved.")
         for track in overlap.segments:
             for segment_id in overlap.segments[track]:
+                print(f"Track/Segment {segment_id} is {track.state[segment_id]}.")
                 if track.state[segment_id] != "free" and track.state[segment_id] != "reserved-overlap":
+                    print('_________This one is not "free" or "reserved-overlap"!_________')
                     return False
         for point in overlap.points:
+            print(f"Point {point.point_id} is {point.state}.")
             if point.state != "free" and point.state != "reserved-overlap":
+                print('_________This one is not "free" or "reserved-overlap"!_________')
                 return False
         return True
 

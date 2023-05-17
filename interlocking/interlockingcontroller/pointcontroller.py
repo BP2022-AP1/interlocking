@@ -20,8 +20,11 @@ class PointController(object):
                 raise ValueError("Turn should happen but is not possible")
 
     def can_route_be_set(self, route):
+        print("Checking if points are free.")
         for point in route.get_points_of_route():
+            print(f"Point {point.point_id} is {point.state}.")
             if point.state != "free":
+                print('_________This one is not "free"!_________')
                 return False
         return True
 
