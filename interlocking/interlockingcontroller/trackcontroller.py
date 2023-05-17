@@ -22,14 +22,15 @@ class TrackController(object):
     def can_route_be_set(self, route):
         print("Checking if all tracks are free.")
         segments = route.get_segments_of_route()
+        are_segments_free = True
         for track_base_id in segments:
             track = self.tracks[track_base_id]
             for segment_id in segments[track_base_id]:
                 print(f"Track/Segment {track_base_id} is {track.state[segment_id]}.")
                 if track.state[segment_id] != "free":
                     print('__________This one is not "free"!__________')
-                    return False
-        return self.overlap_controller.can_any_overlap_be_reserved(route)
+                    are_segments_free = False
+        return are_segments_free and self.overlap_controller.can_any_overlap_be_reserved(route)
 
     def do_two_routes_collide(self, route_1, route_2):
         segments_of_route_1 = {x for v in route_1.get_segments_of_route().values() for x in v}
