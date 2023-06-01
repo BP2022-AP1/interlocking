@@ -17,6 +17,7 @@ class Interlocking(object):
         self.active_routes = []
 
     def prepare(self, yaramo_topoloy):
+        print("Interlocking is being prepared")
         # Nodes
         points = dict()
         for node_uuid in yaramo_topoloy.nodes:
