@@ -23,7 +23,6 @@ class PointController(object):
         for point in route.get_points_of_route():
             if point.state != "free" and point.state != "reserved-overlap":
                 # THIS IS FOR THE MVP! reserved-overlap should not be allowed here!
-                print(f"Point {point.point_id} is {point.state}")
                 return False
         return True
 

@@ -26,11 +26,8 @@ class TrackController(object):
             for segment_id in segments[track_base_id]:
                 if track.state[segment_id] != "free" and track.state[segment_id] != "reserved-overlap":
                     # THIS IS FOR THE MVP! reserved-overlap should not be allowed here!
-                    print(f"Segment {segment_id} is {track.state[segment_id]}")
                     return False
-        can_be_set = self.overlap_controller.can_any_overlap_be_reserved(route)
-        print(f"Can overlap_controller be set: {can_be_set}")
-        return can_be_set
+        return self.overlap_controller.can_any_overlap_be_reserved(route)
 
     def do_two_routes_collide(self, route_1, route_2):
         segments_of_route_1 = {x for v in route_1.get_segments_of_route().values() for x in v}
