@@ -89,7 +89,7 @@ class TrackController(object):
 
             # Free point
             pos_of_segment = track.get_position_of_segment(segment_id)
-            if pos_of_segment == 0 or pos_of_segment == len(track.signals) + 1:
+            if pos_of_segment == 0 or pos_of_segment == len(track.signals):
                 route = None
                 for active_route in self.interlocking.active_routes:
                     if active_route.contains_segment(segment_id):
@@ -102,7 +102,7 @@ class TrackController(object):
 
                 if pos_of_segment == 0 and driving_direction == "in":
                     self.point_controller.set_point_free(track.left_point)
-                elif pos_of_segment == len(track.signals) + 1 and driving_direction == "gegen":
+                elif pos_of_segment == len(track.signals) and driving_direction == "gegen":
                     self.point_controller.set_point_free(track.right_point)
 
     def print_state(self):
