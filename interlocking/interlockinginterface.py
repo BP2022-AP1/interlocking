@@ -92,6 +92,7 @@ class Interlocking(object):
         print("##############")
 
     def set_route(self, yaramo_route):
+        print("Trying to set route")
         if not self.can_route_be_set(yaramo_route):
             return False
         route = self.get_route_from_yaramo_route(yaramo_route)
@@ -104,7 +105,9 @@ class Interlocking(object):
     def can_route_be_set(self, yaramo_route):
         route = self.get_route_from_yaramo_route(yaramo_route)
         can_be_set = self.track_controller.can_route_be_set(route)
+        print(f"Can track_controller be set: {can_be_set}")
         can_be_set = can_be_set and self.point_controller.can_route_be_set(route)
+        print(f"Can point_controller be set: {can_be_set}")
         return can_be_set
 
     def do_two_routes_collide(self, yaramo_route_1, yaramo_route_2):

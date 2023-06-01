@@ -27,6 +27,7 @@ class OverlapController(object):
                     return False
         for point in overlap.points:
             if point.state != "free" and point.state != "reserved-overlap":
+                print(f"Point {point.point_id} is {point.state}")
                 return False
         return True
 
